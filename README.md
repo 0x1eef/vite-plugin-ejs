@@ -12,9 +12,10 @@ although there is little similarity left between the two projects.
 ### HTML / XML
 
 The following example demonstrates how `index.html`, and `sitemap.xml` might
-be generated from `vite.config.js`:
+be generated from `vite.config.js`. The `ejs` function accepts a variable number
+of objects who define an input, an output, and a set of template variables:
 
-```
+```typescript
 import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
@@ -36,7 +37,10 @@ export default defineConfig({
 ### One input, multiple outputs
 
 The following example demonstrates how - given a single input file - multiple
-output files can be generated:
+output files can be generated. This happens to be what I found most diffilcult
+to do with
+[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)
+and is among the primary reasons I started a fork:
 
 ```typescript
 import ejs from "vite-plugin-ejs";
