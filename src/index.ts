@@ -38,7 +38,7 @@ export default function(...files: File[]): PluginOption {
   const fileOpts = { encoding: 'utf-8' };
   const watched: Set<string> = new Set(...(function() {
     const inputs = []
-    for (const k in files) {
+    for (const k in Object.keys(files)) {
       inputs.push(files[k].input);
     }
     return inputs;
