@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-ejs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A Vite plugin for building one or more files from an EJS template.",
   "main": "dist/index.js",
   "typings": "src/index.d.ts",
