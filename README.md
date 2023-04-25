@@ -69,6 +69,7 @@ export default defineConfig({
 ## Install
 
 vite-plugin-ejs is distributed through git.
+<br>
 [GitHub](https://github.com/0x1eef/vite-plugin-ejs),
 and
 [GitLab](https://gitlab.com/0x1eef/vite-plugin-ejs)
