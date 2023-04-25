@@ -66,6 +66,18 @@ export default defineConfig({
 * [Source code (GitHub)](https://github.com/0x1eef/vite-plugin-ejs#readme)
 * [Source code (GitLab)](https://gitlab.com/0x1eef/vite-plugin-ejs#about)
 
+## Install
+
+vite-plugin-ejs is distributed through git.
+[GitHub](https://github.com/0x1eef/vite-plugin-ejs),
+and
+[GitLab](https://gitlab.com/0x1eef/vite-plugin-ejs)
+are available as sources.
+
+```
+$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.1.0
+```
+
 ## <a id="license"> License </a>
 
 [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/).
