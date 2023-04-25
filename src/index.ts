@@ -4,11 +4,11 @@ import path from 'path';
 import fs from 'fs';
 
 type ReadFile = [string, object];
-const readFile = async (...args: ReadFile) => {
+const readFile = async (...args: ReadFile): Promise<string> => {
   const [path, options] = args;
   return new Promise((resolve, reject) => {
     fs.readFile(path, options, (err, data) => {
-      err ? reject(err) : resolve(data);
+      err ? reject(err) : resolve(data.toString());
     });
   });
 };
@@ -17,7 +17,7 @@ type WriteFile = [string, string,  object];
 const writeFile = async (...args: WriteFile): Promise<void> => {
   const [path, text, options] = args;
   return new Promise((resolve, reject) => {
-    fs.writeFile(path, text, options || {}, (err: Error) => {
+    fs.writeFile(path, text, options || {}, (err: any) => {
       err ? reject(err) : resolve();
     });
   });
