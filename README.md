@@ -1,7 +1,7 @@
 ## About
 
 vite-plugin-ejs is a Vite plugin for building one or more files from an
-EJS template. The EJS template could represent a HTML document, but has the
+EJS template. The EJS template can represent a HTML document, but has the
 potential to represent any type of file. This project was originally forked
 from
 [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)
