@@ -76,7 +76,7 @@ and
 are available as sources.
 
 ```
-$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.2.1
+$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.2.2
 ```
 
 ## <a id="license"> License </a>
