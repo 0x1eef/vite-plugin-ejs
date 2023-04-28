@@ -52,13 +52,12 @@ export default function(options: Options): PluginOption {
     },
     async generateBundle(_options, _bundle): Promise<void> {
       try {
-        for (const k in Object.keys(files)) {
-          const file = files[k]
+        files.forEach(async (file) => {
           const input = path.join(vite.root, file.input)
           const { variables } = file
           const text = render(await readFile(input, fileOpts), variables)
           this.emitFile({type: 'asset', fileName: file.output, source: text})
-        }
+        });
       } catch (error: any) {
         this.error(error)
       }
