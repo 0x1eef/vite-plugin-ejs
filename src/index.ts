@@ -3,6 +3,22 @@ import { render } from 'ejs';
 import path from 'path';
 import fs from 'fs';
 
+type Vite = {
+  root: string, build: {outDir: string}
+}
+
+type File = {
+  input: string,
+  output: string
+  variables: Record<string, string | Function | object>
+}
+
+type Options = {
+  enforce?: "pre" | "post",
+  apply?: "build" | "serve",
+  files: File[]
+}
+
 type ReadFile = [string, object];
 const readFile = async (...args: ReadFile): Promise<string> => {
   const [path, options] = args;
@@ -13,27 +29,8 @@ const readFile = async (...args: ReadFile): Promise<string> => {
   });
 };
 
-type WriteFile = [string, string,  object];
-const writeFile = async (...args: WriteFile): Promise<void> => {
-  const [path, text, options] = args;
-  return new Promise((resolve, reject) => {
-    fs.writeFile(path, text, options || {}, (err: any) => {
-      err ? reject(err) : resolve();
-    });
-  });
-};
-
-type File = {
-  input: string,
-  output: string
-  variables: Record<string, string | Function | object>
-}
-
-type Vite = {
-  root: string, build: {outDir: string}
-}
-
-export default function(...files: File[]): PluginOption {
+export default function(options: Options): PluginOption {
+  const { files } = options
   const vite: Vite = {root: "", build: {outDir: ""}};
   const fileOpts = { encoding: 'utf-8' };
   const watched: Set<string> = new Set(...(function() {
@@ -46,7 +43,8 @@ export default function(...files: File[]): PluginOption {
 
   return {
     name: 'ejs',
-    enforce: 'pre',
+    enforce: options.enforce || "pre",
+    apply: options.apply,
     buildStart() {
       watched.forEach((input) => {
         this.addWatchFile(path.join(vite.root, input))

@@ -22,7 +22,7 @@ import ejs from "vite-plugin-ejs";
 export default defineConfig({
   /* ... */
   plugins: [
-    ejs({
+    ejs({files: [{
       input: "./src/html/index.html.ejs",
       output: "./build/html/index.html",
       variables: {title: "Hello world"}
@@ -30,7 +30,7 @@ export default defineConfig({
       input: "./src/sitemap.xml.ejs",
       output: "./build/sitemap.xml",
       variables: {fn: () => "Hello world"}
-    })
+    }]})
   ]
 });
 ```
@@ -50,14 +50,12 @@ import ejs from "vite-plugin-ejs";
 export default defineConfig({
   /* ... */
   plugins: [
-    ejs(...["en", "ar"].map((locale) => {
-      return {
-        input: "./src/html/index.html.ejs",
-        output: `./build/${locale}/index.html`,
-        variables: {locale}
-      }
-    })
-  ])
+    ejs({files: ["en", "ar"].map((locale) => ({
+      input: "./src/html/index.html.ejs",
+      output: `./build/${locale}/index.html`,
+      variables: {locale}
+    }))
+  })]
 });
 ```
 
