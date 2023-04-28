@@ -34,10 +34,10 @@ export default function(options: Options): PluginOption {
   const vite: Vite = {root: "", build: {outDir: ""}};
   const fileOpts = { encoding: 'utf-8' };
   const watched: Set<string> = new Set(...(function() {
-    const inputs = []
-    for (const k in Object.keys(files)) {
-      inputs.push(files[k].input);
-    }
+    const inputs: string[] = []
+    files.forEach((file) => {
+      inputs.push(file.input);
+    });
     return inputs;
   })());
 
