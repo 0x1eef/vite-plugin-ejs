@@ -1,7 +1,7 @@
 ## About
 
 vite-plugin-ejs is a Vite plugin for building one or more files from an
-EJS template. The EJS template could be a HTML document, or any other type of
+EJS template. The EJS template could be a HTML document, or any type of
 text file. This project was originally forked from
 [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)
 although there is little similarity left between the two projects.
@@ -16,6 +16,7 @@ of objects who define an input, an output, and a set of template variables:
 
 ```typescript
 /* vite.config.js */
+import { defineConfig } from "vite";
 import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
@@ -44,6 +45,7 @@ and is among the primary reasons I started a fork:
 
 ```typescript
 /* vite.config.js */
+import { defineConfig } from "vite";
 import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
