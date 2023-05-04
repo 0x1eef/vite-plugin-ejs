@@ -21,9 +21,9 @@ type Options = {
 };
 
 type ReadFile = [string, object];
-const readFile = async (...args: ReadFile): Promise<string> => {
+const readFile = (...args: ReadFile): Promise<string> => {
   const [path, options] = args;
-  return await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     fs.readFile(path, options, (err, data) => {
       err ? reject(err) : resolve(data.toString());
     });
