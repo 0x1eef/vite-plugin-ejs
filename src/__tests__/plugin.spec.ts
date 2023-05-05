@@ -10,7 +10,7 @@ describe('vite-plugin-ejs', () => {
   });
 
   describe('the enforce option', () => {
-    test('the default is "pre"', () => {
+    test('the option default is "pre"', () => {
       const plugin = ejs({ files });
       expect(plugin.enforce).toEqual('pre');
     });
@@ -18,6 +18,23 @@ describe('vite-plugin-ejs', () => {
     test('the option can be set to "post"', () => {
       const plugin = ejs({ enforce: 'post', files });
       expect(plugin.enforce).toEqual('post');
+    });
+  });
+
+  describe('the apply option', () => {
+    test('the option default is undefined', () => {
+      const plugin = ejs({ files });
+      expect(plugin.apply).toBe(undefined);
+    });
+
+    test('the option can be set to "build"', () => {
+      const plugin = ejs({ apply: 'build', files });
+      expect(plugin.apply).toBe('build');
+    });
+
+    test('the option canbe set to "serve"', () => {
+      const plugin = ejs({ apply: 'serve', files });
+      expect(plugin.apply).toBe('serve');
     });
   });
 });
