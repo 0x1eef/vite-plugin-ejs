@@ -8,7 +8,7 @@ although there is little similarity left between the two projects.
 
 ## Examples
 
-### HTML / XML
+__HTML / XML__
 
 The following example demonstrates how `index.html`, and `sitemap.xml` might
 be generated using vite-plugin-ejs. The `ejs` function accepts a variable number
@@ -35,7 +35,7 @@ export default defineConfig({
 });
 ```
 
-### Reusable
+__Reusable__
 
 The following example demonstrates how - given a single input file - multiple
 output files can be generated. This happens to be what I found most diffilcult
