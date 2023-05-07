@@ -35,7 +35,7 @@ export default defineConfig({
 });
 ```
 
-### Reusable input
+### Reusable
 
 The following example demonstrates how - given a single input file - multiple
 output files can be generated. This happens to be what I found most diffilcult
