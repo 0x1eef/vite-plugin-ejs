@@ -78,6 +78,11 @@ are available as sources.
 $ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.3.0
 ```
 
+## Thanks
+
+Thanks to the author, and contributors of
+[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html).
+
 ## <a id="license"> License </a>
 
 [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/).
