@@ -1,7 +1,7 @@
 import { Plugin, ResolvedConfig } from 'vite';
 import { render } from 'ejs';
 import path from 'path';
-import fs from 'fs';
+import { writeFile, readFile, mkdir } from 'fs';
 
 type Vite = {
   root: string
@@ -21,10 +21,10 @@ type Options = {
 };
 
 type ReadFile = [string, object];
-const readFile = (...args: ReadFile): Promise<string> => {
+const read = (...args: ReadFile): Promise<string> => {
   const [path, options] = args;
   return new Promise((resolve, reject) => {
-    fs.readFile(path, options, (err, data) => {
+    readFile(path, options, (err, data) => {
       err ? reject(err) : resolve(data.toString());
     });
   });
@@ -53,13 +53,23 @@ export default function(options: Options): Plugin {
     },
     async generateBundle(_options, _bundle) {
       try {
-        files.forEach((file) => {
-          (async () => {
+        files.forEach(async (file) => {
             const input = path.join(vite.root, file.input);
+            const output = path.join(vite.build.outDir, file.output)
             const { variables } = file;
-            const source = render(await readFile(input, fileOpts), variables);
-            this.emitFile({ type: 'asset', fileName: file.output, source });
-          })();
+            const content = render(await read(input, fileOpts), variables);
+            mkdir(path.dirname(output), {recursive: true}, () => {
+              /* Ideally we would use `emitFile` but it supports the */
+              /* emission of a file based on basename alone. For our */
+              /* case the directory should be used as well. This should */
+              /* be improved. */
+              writeFile(output, content, (err) => {
+                if (!err) {
+                  const relPath = output.replace(process.cwd()+'/', '')
+                  console.info(`${relPath} (vite-plugin-ejs)`)
+                }
+              })
+            });
         });
       } catch (error: any) {
         this.error(error);
