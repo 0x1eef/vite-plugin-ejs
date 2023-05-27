@@ -17,6 +17,7 @@ of objects who define an input, an output, and a set of template variables:
 ```typescript
 /* vite.config.js */
 import { defineConfig } from "vite";
+import path from "path";
 import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
@@ -50,6 +51,7 @@ and is among the primary reasons I started a fork:
 ```typescript
 /* vite.config.js */
 import { defineConfig } from "vite";
+import path from "path";
 import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
@@ -83,7 +85,7 @@ and
 are available as sources.
 
 ```
-$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.3.2
+$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.3.3
 ```
 
 ## Thanks
