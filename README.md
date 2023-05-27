@@ -2,17 +2,18 @@
 
 vite-plugin-ejs is a Vite plugin for building one or more files from an
 EJS template. The EJS template could be a HTML document, or any type of
-text file. This project was originally forked from
-[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)
-although there is little similarity left between the two projects.
+text file. This project was originally inspired by
+[vite-plugin-html](https://github.com/vbenjs/vite-plugin-html),
+but over time became substantiability different.
 
 ## Examples
 
 __HTML / XML__
 
 The following example demonstrates how `index.html`, and `sitemap.xml` might
-be generated using vite-plugin-ejs. The `ejs` function accepts a variable number
-of objects who define an input, an output, and a set of template variables:
+be generated with vite-plugin-ejs. The `ejs` function accepts a variable number
+of objects who define a target: a source, a destination, and a set of template
+variables:
 
 ```typescript
 /* vite.config.js */
@@ -27,13 +28,13 @@ export default defineConfig({
     outDir: path.join(process.cwd(), "build")
   },
   plugins: [
-    ejs({files: [{
-      input: "html/index.html.ejs",
-      output: "html/index.html",
+    ejs({targets: [{
+      src: "html/index.html.ejs",
+      dest: "html/index.html",
       variables: {title: "Hello world"}
     }, {
-      input: "sitemap.xml.ejs",
-      output: "sitemap.xml",
+      src: "sitemap.xml.ejs",
+      dest: "sitemap.xml",
       variables: {fn: () => "Hello world"}
     }]})
   ]
@@ -42,8 +43,8 @@ export default defineConfig({
 
 __Reusable__
 
-The following example demonstrates how - given a single input file - multiple
-output files can be generated. This happens to be what I found most diffilcult
+The following example demonstrates how - given a single source file - multiple
+destination files can be generated. This happens to be what I found most diffilcult
 to do with
 [vite-plugin-html](https://github.com/vbenjs/vite-plugin-html)
 and is among the primary reasons I started a fork:
@@ -61,9 +62,9 @@ export default defineConfig({
     outDir: path.join(process.cwd(), "build")
   },
   plugins: [
-    ejs({files: ["en", "ar"].map((locale) => ({
-      input: "html/index.html.ejs",
-      output: `${locale}/index.html`,
+    ejs({targets: ["en", "ar"].map((locale) => ({
+      src: "html/index.html.ejs",
+      dest: `${locale}/index.html`,
       variables: {locale}
     }))
   })]
