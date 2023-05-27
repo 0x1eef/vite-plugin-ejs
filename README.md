@@ -21,14 +21,18 @@ import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
   /* ... */
+  root: path.join(process.cwd(), "src"),
+  build: {
+    outDir: path.join(process.cwd(), "build")
+  },
   plugins: [
     ejs({files: [{
-      input: "./src/html/index.html.ejs",
-      output: "./build/html/index.html",
+      input: "html/index.html.ejs",
+      output: "html/index.html",
       variables: {title: "Hello world"}
     }, {
-      input: "./src/sitemap.xml.ejs",
-      output: "./build/sitemap.xml",
+      input: "sitemap.xml.ejs",
+      output: "sitemap.xml",
       variables: {fn: () => "Hello world"}
     }]})
   ]
@@ -50,10 +54,14 @@ import ejs from "vite-plugin-ejs";
 
 export default defineConfig({
   /* ... */
+  root: path.join(process.cwd(), "src"),
+  build: {
+    outDir: path.join(process.cwd(), "build")
+  },
   plugins: [
     ejs({files: ["en", "ar"].map((locale) => ({
-      input: "./src/html/index.html.ejs",
-      output: `./build/${locale}/index.html`,
+      input: "html/index.html.ejs",
+      output: `${locale}/index.html`,
       variables: {locale}
     }))
   })]
@@ -75,7 +83,7 @@ and
 are available as sources.
 
 ```
-$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.3.0
+$ npm i git+https://github.com/0x1eef/vite-plugin-ejs.git#v0.3.2
 ```
 
 ## Thanks
